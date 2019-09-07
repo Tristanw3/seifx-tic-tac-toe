@@ -10,8 +10,27 @@
 </head>
 
 <body>
-    <p>text</p>
-    <script src="interact.js"></script>
+    <div class="container">
+        <button onclick="ticTacToe.resetGame()">reset</button>
+        <div class="row">
+            <div class="square" id="box1" onclick="ticTacToe.addMark(1)">1</div>
+            <div class="square" id="box2" onclick="ticTacToe.addMark(2)">2</div>
+            <div class="square" id="box3" onclick="ticTacToe.addMark(3)">3</div>
+        </div>
+        <div class="row">
+            <div class="square" id="box4" onclick="ticTacToe.addMark(4)">4</div>
+            <div class="square" id="box5" onclick="ticTacToe.addMark(5)">5</div>
+            <div class="square" id="box6" onclick="ticTacToe.addMark(6)">6</div>
+        </div>
+        <div class="row">
+            <div class="square" id="box7" onclick="ticTacToe.addMark(7)">7</div>
+            <div class="square" id="box8" onclick="ticTacToe.addMark(8)">8</div>
+            <div class="square" id="box9" onclick="ticTacToe.addMark(9)">9</div>
+        </div>
+
+    </div>
+
+    <script src="interact.js "></script>
 </body>
 
 </html>

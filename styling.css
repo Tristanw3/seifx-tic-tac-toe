@@ -1,3 +1,12 @@
-p {
-    color: red;
+.container {
+    max-width: 1300px;
+}
+
+.square {
+    height: 200px;
+    width: 200px;
+    border: black solid 2px;
+    float: left;
+    text-align: center;
+    font-size: 30px;
 }

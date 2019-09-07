@@ -1,0 +1,41 @@
+  tic tac toe
+
+Required Functionality
+ |- Render a game board in the browser
+ |- Deploy your game online, where the rest of the world can access it
+ |- Visually display which side won if a player gets three in a row or show a draw/"cat’s game" if neither wins
+
+ |- Render Game Function
+ |- Add X or O to game board
+
+ tuesday - basic functionality
+            |- fix win bug - done
+            |- load blanks function
+            |- choose x or o
+            |- win counter
+            |- keyboard controls ??
+
+            
+ thursday - styling
+            |- fix float issue
+            |- make mobile compatible
+            |- see x or o on hover
+            |- change theme based on time
+            |- weather theme
+
+ saturday - additional features
+            |- opponent (random moves)
+            |- store in local storage
+            |- choose player character / image
+
+ tuesday  -  networked multiplayer
+ thursday - 
+ saturday - present
+
+
+
+
+    Switch turns between X and O (or whichever markers you select)
+    Include separate HTML / CSS / JavaScript files
+    Use Javascript for DOM manipulation
+    Use semantic markup for HTML and CSS (adhere to best practices)
