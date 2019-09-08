@@ -1,37 +1,52 @@
 let ticTacToe = {
-    game: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    game: createGame(),
     // true = X, false = O
     turn: true,
     hasWon: false,
-    changeTurn: function() {
+    scores: {
+        playerX: 0,
+        playerO: 0
+    },
+    changeTurn: function () {
         this.turn = !this.turn;
     },
-    renderCurrentBoard: function() {
+    renderCurrentBoard: function () {
         let boardBoxes = document.getElementsByClassName('square');
         this.game.forEach((box, ind) => {
-            boardBoxes[ind].textContent = box;
+            if (box === -1) {
+                boardBoxes[ind].textContent = "X";
+            } else if (box === 1) {
+                boardBoxes[ind].textContent = "O";
+            } else {
+                boardBoxes[ind].textContent = "";
+            }
+
         });
     },
-    addMark: function(loc) {
-        if (this.turn === true && this.game[loc - 1] === 0) {
-            this.game[loc - 1] = 1;
-            this.changeTurn();
-        } else if (this.turn === false && this.game[loc - 1] === 0) {
-            this.game[loc - 1] = -1;
-            this.changeTurn();
+    addMark: function (loc) {
+        if (Math.abs(this.game[loc - 1]) === 1) {
+            console.log('exit func');
+            return;
         }
+        if (this.turn === true) {
+            this.game[loc - 1] = 1;
+        } else if (this.turn === false) {
+            this.game[loc - 1] = -1;
 
-        this.renderCurrentBoard();
+        }
         this.checkWin();
+        this.changeTurn();
+        this.renderCurrentBoard();
+
     },
-    resetGame: function() {
-        this.game = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    resetGame: function () {
+        this.game = createGame();
         this.renderCurrentBoard();
         this.turn = true;
         this.hasWon = false;
     },
 
-    checkWin: function() {
+    checkWin: function () {
         // 3 horizontal rows
         if (Math.abs(this.game[0] + this.game[1] + this.game[2]) === 3) {
             this.hasWon = true;
@@ -53,11 +68,19 @@ let ticTacToe = {
             this.hasWon = true;
         }
         if (this.hasWon === true) {
+            this.renderCurrentBoard();
             alert('congrats');
             this.resetGame();
         }
+    },
+    addToScore: function (player) {
+        this.scores[player] += 1;
     }
 };
+
+function createGame() {
+    return [0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
 
 ticTacToe.renderCurrentBoard();
 

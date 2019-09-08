@@ -10,10 +10,11 @@ Required Functionality
 
  tuesday - basic functionality
             |- fix win bug - done
-            |- load blanks function
+            |- load blanks function - done
             |- choose x or o
             |- win counter
             |- keyboard controls ??
+            |- fix cursor
 
             
  thursday - styling

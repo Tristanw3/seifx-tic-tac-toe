@@ -1,12 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Chilanka',
+        cursive;
+
+}
+
 .container {
-    max-width: 1300px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 50px;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-around;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
 }
 
 .square {
     height: 200px;
     width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: black solid 2px;
-    float: left;
+    /* float: left; */
     text-align: center;
-    font-size: 30px;
+    font-size: 150px;
+
 }
