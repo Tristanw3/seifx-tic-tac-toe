@@ -19,11 +19,12 @@ header {
     background-color: aquamarine;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .row {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .square {
@@ -37,4 +38,9 @@ header {
     text-align: center;
     font-size: 150px;
 
+}
+
+button {
+    padding: 20px;
+    margin: 20px 0;
 }

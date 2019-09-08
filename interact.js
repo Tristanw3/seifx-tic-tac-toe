@@ -1,12 +1,9 @@
 let ticTacToe = {
     game: createGame(),
     // true = X, false = O
-    turn: true,
+    turn: false,
     hasWon: false,
-    scores: {
-        playerX: 0,
-        playerO: 0
-    },
+    scores: blankScores(),
     changeTurn: function () {
         this.turn = !this.turn;
     },
@@ -20,30 +17,45 @@ let ticTacToe = {
             } else {
                 boardBoxes[ind].textContent = "";
             }
-
         });
+
+        // Render Scores
+        let playerXScore = document.querySelectorAll('#playerX span')[0];
+        playerXScore.textContent = this.scores.playerX;
+
+        let playerOScore = document.querySelectorAll('#playerO span')[0];
+        playerOScore.textContent = this.scores.playerO;
+
     },
     addMark: function (loc) {
-        if (Math.abs(this.game[loc - 1]) === 1) {
-            console.log('exit func');
+        if (Math.abs(this.game[loc]) === 1) {
             return;
         }
         if (this.turn === true) {
-            this.game[loc - 1] = 1;
+            this.game[loc] = 1;
         } else if (this.turn === false) {
-            this.game[loc - 1] = -1;
+            this.game[loc] = -1;
 
         }
         this.checkWin();
+        if (this.hasWon === true) {
+            this.resetGame();
+            return;
+        }
+
         this.changeTurn();
         this.renderCurrentBoard();
 
     },
     resetGame: function () {
         this.game = createGame();
-        this.renderCurrentBoard();
-        this.turn = true;
+        this.turn = false;
         this.hasWon = false;
+        this.renderCurrentBoard();
+    },
+    resetScores() {
+        this.scores = blankScores();
+        this.resetGame();
     },
 
     checkWin: function () {
@@ -69,17 +81,31 @@ let ticTacToe = {
         }
         if (this.hasWon === true) {
             this.renderCurrentBoard();
+
+            this.addToScore(this.turn);
             alert('congrats');
-            this.resetGame();
+
         }
     },
-    addToScore: function (player) {
-        this.scores[player] += 1;
+    addToScore: function (playerTurn) {
+        console.log(playerTurn);
+        if (!playerTurn) {
+            this.scores.playerX += 1;
+        } else if (playerTurn) {
+            this.scores.playerO += 1;
+        }
     }
 };
 
 function createGame() {
     return [0, 0, 0, 0, 0, 0, 0, 0, 0]
+}
+
+function blankScores() {
+    return {
+        playerX: 0,
+        playerO: 0
+    }
 }
 
 ticTacToe.renderCurrentBoard();
@@ -88,5 +114,3 @@ ticTacToe.renderCurrentBoard();
 
 let today = new Date();
 time = today.getHours();
-
-console.log(time);
