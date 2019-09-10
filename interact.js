@@ -4,18 +4,20 @@ let ticTacToe = {
     turn: false,
     hasWon: false,
     scores: blankScores(),
-    changeTurn: function () {
+    congratsMessageVisible: false,
+
+    changeTurn: function() {
         this.turn = !this.turn;
     },
-    renderCurrentBoard: function () {
+    renderCurrentBoard: function() {
         let boardBoxes = document.getElementsByClassName('square');
         this.game.forEach((box, ind) => {
             if (box === -1) {
-                boardBoxes[ind].textContent = "X";
+                boardBoxes[ind].textContent = 'X';
             } else if (box === 1) {
-                boardBoxes[ind].textContent = "O";
+                boardBoxes[ind].textContent = 'O';
             } else {
-                boardBoxes[ind].textContent = "";
+                boardBoxes[ind].textContent = '';
             }
         });
 
@@ -25,9 +27,8 @@ let ticTacToe = {
 
         let playerOScore = document.querySelectorAll('#playerO span')[0];
         playerOScore.textContent = this.scores.playerO;
-
     },
-    addMark: function (loc) {
+    addMark: function(loc) {
         if (Math.abs(this.game[loc]) === 1) {
             return;
         }
@@ -35,7 +36,6 @@ let ticTacToe = {
             this.game[loc] = 1;
         } else if (this.turn === false) {
             this.game[loc] = -1;
-
         }
         this.checkWin();
         if (this.hasWon === true) {
@@ -45,9 +45,8 @@ let ticTacToe = {
 
         this.changeTurn();
         this.renderCurrentBoard();
-
     },
-    resetGame: function () {
+    resetGame: function() {
         this.game = createGame();
         this.turn = false;
         this.hasWon = false;
@@ -58,7 +57,7 @@ let ticTacToe = {
         this.resetGame();
     },
 
-    checkWin: function () {
+    checkWin: function() {
         // 3 horizontal rows
         if (Math.abs(this.game[0] + this.game[1] + this.game[2]) === 3) {
             this.hasWon = true;
@@ -79,33 +78,66 @@ let ticTacToe = {
         } else if (Math.abs(this.game[2] + this.game[4] + this.game[6]) === 3) {
             this.hasWon = true;
         }
+
         if (this.hasWon === true) {
             this.renderCurrentBoard();
-
             this.addToScore(this.turn);
-            alert('congrats');
-
+            this.displayCongratsMessage();
         }
     },
-    addToScore: function (playerTurn) {
-        console.log(playerTurn);
+    addToScore: function(playerTurn) {
         if (!playerTurn) {
             this.scores.playerX += 1;
         } else if (playerTurn) {
             this.scores.playerO += 1;
         }
+    },
+    displayCongratsMessage: function() {
+        let ticTacToeBoard = document.getElementsByClassName('board')[0];
+        let message = document.getElementsByClassName('congrats-message')[0];
+
+        this.congratsMessageVisible = !this.congratsMessageVisible;
+
+        if (this.congratsMessageVisible === true) {
+            ticTacToeBoard.style.display = 'none';
+            message.style.display = 'flex';
+        } else if (this.congratsMessageVisible === false) {
+            ticTacToeBoard.style.display = 'block';
+            message.style.display = 'none';
+        }
+    },
+
+    seePreviewOnHover: function() {
+        let sq = $('.square');
+        console.log(sq);
+        sq.hover(
+            function(event) {
+                console.log(event.currentTarget);
+                if (event.currentTarget.textContent === '') {
+                    console.log(ticTacToe.turn);
+                    if (ticTacToe.turn === true) {
+                        event.currentTarget.textContent = 'O';
+                    } else if (ticTacToe.turn === false) {
+                        event.currentTarget.textContent = 'X';
+                    }
+                }
+            },
+            function(event) {
+                event.currentTarget.textContent = '';
+            }
+        );
     }
 };
 
 function createGame() {
-    return [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    return [0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
 function blankScores() {
     return {
         playerX: 0,
         playerO: 0
-    }
+    };
 }
 
 ticTacToe.renderCurrentBoard();
@@ -114,3 +146,5 @@ ticTacToe.renderCurrentBoard();
 
 let today = new Date();
 time = today.getHours();
+
+ticTacToe.seePreviewOnHover();

@@ -2,9 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Chilanka',
-        cursive;
-
+    font-family: 'Chilanka', cursive;
 }
 
 .container {
@@ -27,17 +25,30 @@ header {
     justify-content: space-around;
 }
 
+.board {
+    border: solid 2px black;
+    cursor: default;
+}
+
+.congrats-message {
+    display: none;
+    height: 300px;
+    color: red;
+    background-color: bisque;
+    justify-content: center;
+    align-items: center;
+}
+
 .square {
     height: 200px;
     width: 200px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 40px;
     border: black solid 2px;
     /* float: left; */
     text-align: center;
     font-size: 150px;
-
 }
 
 button {

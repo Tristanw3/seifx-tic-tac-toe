@@ -11,12 +11,11 @@ Required Functionality
  tuesday - basic functionality
             |- fix win bug - done
             |- load blanks function - done
+            |- win counter - done
             |- choose x or o
-            |- win counter
             |- keyboard controls ??
             |- fix cursor
 
-            
  thursday - styling
             |- fix float issue
             |- make mobile compatible
