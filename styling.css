@@ -33,10 +33,9 @@ header {
 .congrats-message {
     display: none;
     height: 300px;
-    color: red;
-    background-color: bisque;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    flex-direction: column;
 }
 
 .square {
@@ -54,4 +53,6 @@ header {
 button {
     padding: 20px;
     margin: 20px 0;
+    border-radius: 20px;
+    font-size: 15px;
 }

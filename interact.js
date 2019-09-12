@@ -109,6 +109,29 @@ let ticTacToe = {
         }
     },
 
+    showColorsTheme: function() {
+        let currentTheme;
+        let today = new Date();
+        let time = today.getHours();
+        // time = 12; //test time theme
+
+        if (time > 6 && time < 18) {
+            currentTheme = themes.light;
+        } else {
+            currentTheme = themes.dark;
+        }
+        $('body').css('background-color', currentTheme.background);
+        $('div').css('color', 'white');
+        $('div').css('border-color', currentTheme.marks);
+        $('header').css('background-color', currentTheme.top);
+        $('.board').css('background-color', currentTheme.gameBackground);
+        $('p').css('color', 'white');
+        $('button').css('color', 'white');
+        $('button').css('background-color', currentTheme.gameBackground);
+        $('button').css('border-color', currentTheme.marks);
+        $('.congrats-message').css('background-color', currentTheme.gameBackground);
+    },
+
     seePreviewOnHover: function() {
         let sq = $('.square');
 
@@ -149,7 +172,23 @@ ticTacToe.renderCurrentBoard();
 
 // ticTacToe.addMark('o', 0);
 
-let today = new Date();
-time = today.getHours();
-
 ticTacToe.seePreviewOnHover();
+
+const themes = {
+    light: {
+        background: '#B6B5B8',
+        gameBackground: '#FAF5F2',
+        marks: '#FBC2B9',
+        top: '#FDD8D3',
+        topText: '#FBC2B9'
+    },
+    dark: {
+        background: '#140126',
+        gameBackground: '#270140',
+        marks: '#63038C',
+        top: '#9704BF',
+        topText: '#140126'
+    }
+};
+
+ticTacToe.showColorsTheme();
