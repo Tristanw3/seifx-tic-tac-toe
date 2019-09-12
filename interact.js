@@ -5,6 +5,7 @@ let ticTacToe = {
     hasWon: false,
     scores: blankScores(),
     congratsMessageVisible: false,
+    hoverState: false,
 
     changeTurn: function() {
         this.turn = !this.turn;
@@ -37,6 +38,7 @@ let ticTacToe = {
         } else if (this.turn === false) {
             this.game[loc] = -1;
         }
+        this.hoverState = false;
         this.checkWin();
         if (this.hasWon === true) {
             this.resetGame();
@@ -109,12 +111,12 @@ let ticTacToe = {
 
     seePreviewOnHover: function() {
         let sq = $('.square');
-        console.log(sq);
+
         sq.hover(
             function(event) {
-                console.log(event.currentTarget);
                 if (event.currentTarget.textContent === '') {
-                    console.log(ticTacToe.turn);
+                    ticTacToe.hoverState = true;
+
                     if (ticTacToe.turn === true) {
                         event.currentTarget.textContent = 'O';
                     } else if (ticTacToe.turn === false) {
@@ -123,7 +125,10 @@ let ticTacToe = {
                 }
             },
             function(event) {
-                event.currentTarget.textContent = '';
+                if (ticTacToe.hoverState === true) {
+                    event.currentTarget.textContent = '';
+                }
+                ticTacToe.hoverState = false;
             }
         );
     }
