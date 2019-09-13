@@ -7,10 +7,10 @@ let ticTacToe = {
     congratsMessageVisible: false,
     hoverState: false,
 
-    changeTurn: function() {
+    changeTurn: function () {
         this.turn = !this.turn;
     },
-    renderCurrentBoard: function() {
+    renderCurrentBoard: function () {
         let boardBoxes = document.getElementsByClassName('square');
         this.game.forEach((box, ind) => {
             if (box === -1) {
@@ -29,7 +29,7 @@ let ticTacToe = {
         let playerOScore = document.querySelectorAll('#playerO span')[0];
         playerOScore.textContent = this.scores.playerO;
     },
-    addMark: function(loc) {
+    addMark: function (loc) {
         if (Math.abs(this.game[loc]) === 1) {
             return;
         }
@@ -48,7 +48,7 @@ let ticTacToe = {
         this.changeTurn();
         this.renderCurrentBoard();
     },
-    resetGame: function() {
+    resetGame: function () {
         this.game = createGame();
         this.turn = false;
         this.hasWon = false;
@@ -59,7 +59,7 @@ let ticTacToe = {
         this.resetGame();
     },
 
-    checkWin: function() {
+    checkWin: function () {
         // 3 horizontal rows
         if (Math.abs(this.game[0] + this.game[1] + this.game[2]) === 3) {
             this.hasWon = true;
@@ -87,14 +87,14 @@ let ticTacToe = {
             this.displayCongratsMessage();
         }
     },
-    addToScore: function(playerTurn) {
+    addToScore: function (playerTurn) {
         if (!playerTurn) {
             this.scores.playerX += 1;
         } else if (playerTurn) {
             this.scores.playerO += 1;
         }
     },
-    displayCongratsMessage: function() {
+    displayCongratsMessage: function () {
         let ticTacToeBoard = document.getElementsByClassName('board')[0];
         let message = document.getElementsByClassName('congrats-message')[0];
 
@@ -104,12 +104,14 @@ let ticTacToe = {
             ticTacToeBoard.style.display = 'none';
             message.style.display = 'flex';
         } else if (this.congratsMessageVisible === false) {
-            ticTacToeBoard.style.display = 'block';
+            let winText = document.querySelector('.congrats-message h1');
+            winText.textContent =
+                ticTacToeBoard.style.display = 'block';
             message.style.display = 'none';
         }
     },
 
-    showColorsTheme: function() {
+    showColorsTheme: function () {
         let currentTheme;
         let today = new Date();
         let time = today.getHours();
@@ -121,7 +123,7 @@ let ticTacToe = {
             currentTheme = themes.dark;
         }
         $('body').css('background-color', currentTheme.background);
-        $('div').css('color', 'white');
+        $('div').css('color', currentTheme.marks);
         $('div').css('border-color', currentTheme.marks);
         $('header').css('background-color', currentTheme.top);
         $('.board').css('background-color', currentTheme.gameBackground);
@@ -132,11 +134,11 @@ let ticTacToe = {
         $('.congrats-message').css('background-color', currentTheme.gameBackground);
     },
 
-    seePreviewOnHover: function() {
+    seePreviewOnHover: function () {
         let sq = $('.square');
 
         sq.hover(
-            function(event) {
+            function (event) {
                 if (event.currentTarget.textContent === '') {
                     ticTacToe.hoverState = true;
 
@@ -147,7 +149,7 @@ let ticTacToe = {
                     }
                 }
             },
-            function(event) {
+            function (event) {
                 if (ticTacToe.hoverState === true) {
                     event.currentTarget.textContent = '';
                 }
@@ -176,11 +178,12 @@ ticTacToe.seePreviewOnHover();
 
 const themes = {
     light: {
-        background: '#B6B5B8',
-        gameBackground: '#FAF5F2',
-        marks: '#FBC2B9',
-        top: '#FDD8D3',
-        topText: '#FBC2B9'
+        background: '#82877A',
+        gameBackground: '#B4AA97',
+        marks: '#D44917',
+        top: '#D44917',
+        topText: '#F5F4E1',
+
     },
     dark: {
         background: '#140126',
@@ -190,5 +193,13 @@ const themes = {
         topText: '#140126'
     }
 };
+
+function getWin(turn) {
+    if (turn === true) {
+        return "X"
+    } else if (turn === false) {
+        return "O"
+    }
+}
 
 ticTacToe.showColorsTheme();
