@@ -16,6 +16,7 @@
     <div class="container">
         <header>
             <p id='playerX'>Player X Score - <span>0</span></p>
+            <button id='save' onclick='ticTacToe.useSavedScores()'>Continue Saved Game</button>
             <p id='playerO'>Player O Score - <span>0</span></p>
 
         </header>
@@ -47,6 +48,8 @@
             <button onclick="ticTacToe.resetGame()">Reset Game</button>
             <button onclick="ticTacToe.resetScores()">Reset Game and Scores</button>
             <button id="compPlay" onclick="ticTacToe.playComputer()">Play Comp Circle Player</button>
+            <button id='saveGame' onclick='ticTacToe.saveGame()'>Save Game</button>
+            <button onclick='ticTacToe.clearSaveGame()'>Clear Saved Game</button>
         </div>
     </div>
 

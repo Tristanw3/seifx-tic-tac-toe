@@ -95,7 +95,6 @@ let ticTacToe = {
             this.hasWon = true;
         } else if (this.game.indexOf(0) === -1) {
             this.hasWon = 'draw';
-            console.log(this.hasWon);
         }
 
         if (this.hasWon === true) {
@@ -203,6 +202,21 @@ let ticTacToe = {
     resetAndRemoveMessage() {
         this.displayCongratsMessage();
         this.resetGame();
+    },
+    saveGame() {
+        window.localStorage.setItem('scores', JSON.stringify(this.scores));
+    },
+    clearSaveGame: function() {
+        window.localStorage.setItem('scores', JSON.stringify(blankScores()));
+    },
+    getScoresFromStorage: function() {
+        return JSON.parse(window.localStorage.getItem('scores'));
+    },
+    useSavedScores: function() {
+        let saved = this.getScoresFromStorage();
+        this.scores.playerO = saved.playerO;
+        this.scores.playerX = saved.playerX;
+        this.renderCurrentBoard();
     }
 };
 
@@ -250,4 +264,4 @@ function getWin(turn) {
     }
 }
 
-ticTacToe.showColorsTheme()
+ticTacToe.showColorsTheme();
