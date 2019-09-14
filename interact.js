@@ -213,11 +213,24 @@ let ticTacToe = {
         return JSON.parse(window.localStorage.getItem('scores'));
     },
     useSavedScores: function() {
-        let saved = this.getScoresFromStorage();
-        this.scores.playerO = saved.playerO;
-        this.scores.playerX = saved.playerX;
-        this.renderCurrentBoard();
-    }
+            let saved = this.getScoresFromStorage();
+            this.scores.playerO = saved.playerO;
+            this.scores.playerX = saved.playerX;
+            this.renderCurrentBoard();
+        }
+        // addDataToStore: function() {
+        //     db
+        //         .collection('testGame')
+        //         .add({
+        //             gameBoard: this.game
+        //         })
+        //         .then(function(docRef) {
+        //             console.log('Document written with ID: ', docRef.id);
+        //         })
+        //         .catch(function(error) {
+        //             console.error('Error adding document: ', error);
+        //         });
+        // }
 };
 
 function createGame() {
@@ -265,3 +278,5 @@ function getWin(turn) {
 }
 
 ticTacToe.showColorsTheme();
+
+// ticTacToe.addDataToStore();
