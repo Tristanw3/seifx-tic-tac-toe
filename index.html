@@ -21,19 +21,19 @@
         </header>
         <div class="board">
             <div class="row">
-                <div class="square" id="0" onclick="ticTacToe.addMark(0)"></div>
-                <div class="square" id="1" onclick="ticTacToe.addMark(1)"></div>
-                <div class="square" id="2" onclick="ticTacToe.addMark(2)"></div>
+                <div class="square" onclick="ticTacToe.addMark(0)"></div>
+                <div class="square" onclick="ticTacToe.addMark(1)"></div>
+                <div class="square" onclick="ticTacToe.addMark(2)"></div>
             </div>
             <div class="row">
-                <div class="square" id="3" onclick="ticTacToe.addMark(3)"></div>
-                <div class="square" id="4" onclick="ticTacToe.addMark(4)"></div>
-                <div class="square" id="5" onclick="ticTacToe.addMark(5)"></div>
+                <div class="square" onclick="ticTacToe.addMark(3)"></div>
+                <div class="square" onclick="ticTacToe.addMark(4)"></div>
+                <div class="square" onclick="ticTacToe.addMark(5)"></div>
             </div>
             <div class="row">
-                <div class="square" id="6" onclick="ticTacToe.addMark(6)"></div>
-                <div class="square" id="7" onclick="ticTacToe.addMark(7)"></div>
-                <div class="square" id="8" onclick="ticTacToe.addMark(8)"></div>
+                <div class="square" onclick="ticTacToe.addMark(6)"></div>
+                <div class="square" onclick="ticTacToe.addMark(7)"></div>
+                <div class="square" onclick="ticTacToe.addMark(8)"></div>
             </div>
         </div>
         <div class="congrats-message">
@@ -49,21 +49,11 @@
             <button id="compPlay" onclick="ticTacToe.playComputer()">Play Comp Circle Player</button>
             <button id='saveGame' onclick='ticTacToe.saveGame()'>Save Game</button>
             <button onclick='ticTacToe.clearSaveGame()'>Clear Saved Game</button>
-            <button onclick='ticTacToe.playOnline()'>Play Online Multiplayer</button>
         </div>
     </div>
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-    <script src="config.js"></script>
-
     <script src="interact.js"></script>
 </body>
 

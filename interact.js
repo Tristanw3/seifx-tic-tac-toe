@@ -64,15 +64,9 @@ let ticTacToe = {
         if (this.playingCompOpponent === true && this.turn === true) {
             let compMove = ticTacToe.compOpponentMove();
 
-            function runCompMove(newState) {
-                setTimeout(function() {
-                    ticTacToe.addMark(compMove);
-                }, 2000);
-            }
+            ticTacToe.addMark(compMove);
+
             runCompMove();
-        } else if (this.playingOnlineMulti === true) {
-            console.log('multipass');
-            this.addDataToStore();
         }
     },
     resetGame: function() {
@@ -231,37 +225,6 @@ let ticTacToe = {
         this.scores.playerO = saved.playerO;
         this.scores.playerX = saved.playerX;
         this.renderCurrentBoard();
-    },
-    addDataToStore: function() {
-        db
-            .collection('ticTacToe')
-            .doc('gameBoard')
-            .set({
-                game: this.game
-            })
-            .then(function() {
-                console.log('Document written');
-            })
-            .catch(function(error) {
-                console.error('Error adding document: ', error);
-            });
-    },
-    getCurrentGameBoard: function() {
-        var onlineGame = db.collection('ticTacToe').doc('nHAvkyhnUPXxxZQhEqPE');
-
-        onlineGame
-            .get()
-            .then(function(doc) {
-                if (doc.exists) {
-                    console.log('Document data:', doc.data());
-                } else {
-                    // doc.data() will be undefined in this case
-                    console.log('No such document!');
-                }
-            })
-            .catch(function(error) {
-                console.log('Error getting document:', error);
-            });
     }
 };
 
@@ -297,8 +260,6 @@ const themes = {
         top: '#63038C',
         topText: '#140126'
     }
-
-    // #9704BF'
 };
 
 function getWin(turn) {
@@ -310,7 +271,3 @@ function getWin(turn) {
 }
 
 ticTacToe.showColorsTheme();
-
-// ticTacToe.addDataToStore();
-
-// ticTacToe.getCurrentGameBoard();
