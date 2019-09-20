@@ -7,13 +7,16 @@ let ticTacToe = {
     scores: blankScores(),
     congratsMessageVisible: false,
     hoverState: false,
+    playingOnlineMulti: false,
 
     changeTurn: function() {
         this.turn = !this.turn;
     },
     playComputer: function() {
         this.playingCompOpponent = !this.playingCompOpponent;
-        console.log(this.playingCompOpponent);
+    },
+    playOnline: function() {
+        this.playingOnlineMulti = !this.playingOnlineMulti;
     },
     renderCurrentBoard: function() {
         let boardBoxes = document.getElementsByClassName('square');
@@ -59,7 +62,17 @@ let ticTacToe = {
         this.changeTurn();
         this.renderCurrentBoard();
         if (this.playingCompOpponent === true && this.turn === true) {
-            ticTacToe.addMark(ticTacToe.compOpponentMove());
+            let compMove = ticTacToe.compOpponentMove();
+
+            function runCompMove(newState) {
+                setTimeout(function() {
+                    ticTacToe.addMark(compMove);
+                }, 2000);
+            }
+            runCompMove();
+        } else if (this.playingOnlineMulti === true) {
+            console.log('multipass');
+            this.addDataToStore();
         }
     },
     resetGame: function() {
@@ -161,6 +174,7 @@ let ticTacToe = {
         $('button').css('background-color', currentTheme.gameBackground);
         $('button').css('border-color', currentTheme.marks);
         $('.congrats-message').css('background-color', currentTheme.gameBackground);
+        document.body.style.display = 'block';
     },
 
     seePreviewOnHover: function() {
@@ -213,24 +227,42 @@ let ticTacToe = {
         return JSON.parse(window.localStorage.getItem('scores'));
     },
     useSavedScores: function() {
-            let saved = this.getScoresFromStorage();
-            this.scores.playerO = saved.playerO;
-            this.scores.playerX = saved.playerX;
-            this.renderCurrentBoard();
-        }
-        // addDataToStore: function() {
-        //     db
-        //         .collection('testGame')
-        //         .add({
-        //             gameBoard: this.game
-        //         })
-        //         .then(function(docRef) {
-        //             console.log('Document written with ID: ', docRef.id);
-        //         })
-        //         .catch(function(error) {
-        //             console.error('Error adding document: ', error);
-        //         });
-        // }
+        let saved = this.getScoresFromStorage();
+        this.scores.playerO = saved.playerO;
+        this.scores.playerX = saved.playerX;
+        this.renderCurrentBoard();
+    },
+    addDataToStore: function() {
+        db
+            .collection('ticTacToe')
+            .doc('gameBoard')
+            .set({
+                game: this.game
+            })
+            .then(function() {
+                console.log('Document written');
+            })
+            .catch(function(error) {
+                console.error('Error adding document: ', error);
+            });
+    },
+    getCurrentGameBoard: function() {
+        var onlineGame = db.collection('ticTacToe').doc('nHAvkyhnUPXxxZQhEqPE');
+
+        onlineGame
+            .get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    console.log('Document data:', doc.data());
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log('No such document!');
+                }
+            })
+            .catch(function(error) {
+                console.log('Error getting document:', error);
+            });
+    }
 };
 
 function createGame() {
@@ -280,3 +312,5 @@ function getWin(turn) {
 ticTacToe.showColorsTheme();
 
 // ticTacToe.addDataToStore();
+
+// ticTacToe.getCurrentGameBoard();

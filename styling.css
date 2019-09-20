@@ -5,6 +5,10 @@
     font-family: 'Chilanka', cursive;
 }
 
+body {
+    display: none;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
