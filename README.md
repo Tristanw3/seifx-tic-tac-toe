@@ -7,6 +7,7 @@ Basic frontend game created as part of the General Assembly seifx01.
 Built with HTML CSS and JavaScript.
 
 **Features include:**
+---
 * Mobile compatibility
 * Hover Effects
 * Time of day dark or light theme
@@ -16,10 +17,12 @@ Built with HTML CSS and JavaScript.
 * Reset Game
 
 **Known Bugs:**
+---
 * Mobile compatibility isn't perfect on medium / small screens
 * Border for game squares disappear on hover
 
 **Potential V2 Features**
+---
 * Choose different game pieces
 * Multiplayer with Firebase
 
