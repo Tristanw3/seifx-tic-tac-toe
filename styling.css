@@ -25,10 +25,6 @@ header {
     flex-wrap: wrap;
 }
 
-header button {
-    margin: 0;
-}
-
 .row {
     display: flex;
     justify-content: space-around;
@@ -63,14 +59,10 @@ header button {
 }
 
 button {
-    padding: 5px;
-    margin: 20px 0;
+    padding: 35px;
+    margin: 10px 5px;
     border-radius: 12px;
     font-size: 10px;
-}
-
-.lower button {
-    margin: 10px 0 0 0;
 }
 
 
@@ -85,14 +77,6 @@ button {
     button {
         padding: 20px;
         font-size: 15px;
-    }
-    header button {
-        padding: 10px;
-        margin: 0;
-        order: 0;
-    }
-    #playerO {
-        order: 1;
     }
     header {
         height: 50px;
