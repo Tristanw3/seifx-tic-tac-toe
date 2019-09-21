@@ -1,22 +1,18 @@
 let ticTacToe = {
     game: createGame(),
-    // true = X, false = O
+    // turn true = X, false = O
     turn: false,
     hasWon: false,
     playingCompOpponent: false,
     scores: blankScores(),
     congratsMessageVisible: false,
     hoverState: false,
-    playingOnlineMulti: false,
 
     changeTurn: function() {
         this.turn = !this.turn;
     },
     playComputer: function() {
         this.playingCompOpponent = !this.playingCompOpponent;
-    },
-    playOnline: function() {
-        this.playingOnlineMulti = !this.playingOnlineMulti;
     },
     renderCurrentBoard: function() {
         let boardBoxes = document.getElementsByClassName('square');
@@ -151,7 +147,6 @@ let ticTacToe = {
         let currentTheme;
         let today = new Date();
         let time = today.getHours();
-        // time = 20; //test time theme
 
         if (time > 6 && time < 18) {
             currentTheme = themes.light;
@@ -239,11 +234,13 @@ function blankScores() {
     };
 }
 
-ticTacToe.renderCurrentBoard();
-
-// ticTacToe.addMark('o', 0);
-
-ticTacToe.seePreviewOnHover();
+function getWin(turn) {
+    if (turn === true) {
+        return 'O';
+    } else if (turn === false) {
+        return 'X';
+    }
+}
 
 const themes = {
     light: {
@@ -262,12 +259,10 @@ const themes = {
     }
 };
 
-function getWin(turn) {
-    if (turn === true) {
-        return 'O';
-    } else if (turn === false) {
-        return 'X';
-    }
+function initiation() {
+    ticTacToe.showColorsTheme();
+    ticTacToe.renderCurrentBoard();
+    ticTacToe.seePreviewOnHover();
 }
 
-ticTacToe.showColorsTheme();
+initiation();
