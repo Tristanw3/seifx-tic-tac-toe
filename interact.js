@@ -132,7 +132,7 @@ let ticTacToe = {
             } else {
                 winText.textContent = ` Player ${getWin(this.turn)} wins`;
             }
-            scoreText.textContent = `Score is X ${this.scores.playerX} : O ${this.scores.playerO}`;
+            scoreText.textContent = `X : ${this.scores.playerX} | O : ${this.scores.playerO}`;
             ticTacToeBoard.style.display = 'none';
             bottomButtons.style.display = 'none';
             message.style.display = 'flex';

@@ -47,6 +47,10 @@ header {
     flex-direction: column;
 }
 
+.congrats-message p {
+    font-size: 40px;
+}
+
 .square {
     height: 110px;
     width: 200px;
