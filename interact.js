@@ -61,8 +61,6 @@ let ticTacToe = {
             let compMove = ticTacToe.compOpponentMove();
 
             ticTacToe.addMark(compMove);
-
-            runCompMove();
         }
     },
     resetGame: function() {
@@ -147,6 +145,7 @@ let ticTacToe = {
         let currentTheme;
         let today = new Date();
         let time = today.getHours();
+        // time = 5;
 
         if (time > 6 && time < 18) {
             currentTheme = themes.light;

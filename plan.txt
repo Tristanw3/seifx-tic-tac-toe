@@ -8,6 +8,10 @@ Required Functionality
  |- Render Game Function
  |- Add X or O to game board
 
+ Things Used
+  |- H
+  |- Animate.CSS
+
  tuesday - basic functionality
             |- fix win bug - done
             |- load blanks function - done
